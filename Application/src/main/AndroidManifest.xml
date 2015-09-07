@@ -63,7 +63,8 @@
         <provider
             android:name=".provider.FeedProvider"
             android:authorities="com.example.android.basicsyncadapter"
-            android:exported="false" />
+            android:exported="false"
+            android:syncable="true" />
 
         <!-- This service implements our SyncAdapter. It needs to be exported, so that the system
         sync framework can access it. -->

@@ -20,6 +20,7 @@ import android.accounts.Account;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SyncStatusObserver;
 import android.database.Cursor;
@@ -141,11 +142,11 @@ public class EntryListFragment extends ListFragment
      * {@link SyncService} with it, and establish a sync schedule.
      */
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.d(TAG, "onAttach context");
 
-        // Create account, if needed
-        SyncUtils.CreateSyncAccount(activity);
+        SyncUtils.CreateSyncAccount(getActivity());
     }
 
     @Override
@@ -314,7 +315,7 @@ public class EntryListFragment extends ListFragment
     }
 
     /**
-     * Crfate a new anonymous SyncStatusObserver. It's attached to the app's ContentResolver in
+     * Create a new anonymous SyncStatusObserver. It's attached to the app's ContentResolver in
      * onResume(), and removed in onPause(). If status changes, it sets the state of the Refresh
      * button. If a sync is active or pending, the Refresh button is replaced by an indeterminate
      * ProgressBar; otherwise, the button itself is displayed.
